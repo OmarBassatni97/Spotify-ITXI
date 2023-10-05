@@ -53,8 +53,7 @@ const Search = () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data)
-                setArtists(data)
+                setArtists(data.artists.items)
             })
             .catch((error) => {
                 console.error('Error:', error)
@@ -62,19 +61,26 @@ const Search = () => {
     }
     console.log(artists);
     return (
-        <div className="w-full flex items-center justify-center mt-5">
-            <form onSubmit={search} className='border p-4 flex justify-center items-center'>
-                <input onChange={(e) => setSearchValue(e.target.value)} type="text" className='outline-none' placeholder='Search for an artist...' />
-                <AiOutlineSearch />
-            </form>
-            {
-                artists && <div className='w-full grid col-span-4'>
-                    {artists?.items?.map((artist, index) => (
-                        <ArtistCard key={index} img={artist.images[0].url} name={artist.name} rating={artist.popularity} followers={artist.followers.total} />
-                    ))}
-                </div>
-            }
+        <div className='w-full flex flex-col justify-center items-center '>
+            <div className="flex flex-col items-center justify-center mt-5 max-w-[1440px]">
+                <form onSubmit={search} className='border p-4 flex justify-center items-center '>
+                    <input onChange={(e) => setSearchValue(e.target.value)} type="text" className='outline-none' placeholder='Search for an artist...' />
+                    <AiOutlineSearch />
+                </form>
+                {
+                    artists && <div className='w-full grid grid-cols-4 gap-4 py-4'>
+                        {artists?.map((artist, index) => {
+                            return (
+                                <ArtistCard key={index} img={artist?.images[0]?.url} name={artist.name} rating={artist.popularity} followers={artist.followers.total} />
+
+                            )
+                        }
+                        )}
+                    </div>
+                }
+            </div>
         </div>
+
     )
 }
 
