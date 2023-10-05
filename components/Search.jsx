@@ -71,7 +71,7 @@ const Search = () => {
                     artists && <div className='w-full grid grid-cols-4 gap-4 py-4'>
                         {artists?.map((artist, index) => {
                             return (
-                                <ArtistCard key={index} img={artist?.images[0]?.url} name={artist.name} rating={artist.popularity} followers={artist.followers.total} />
+                                <ArtistCard accessToken={accessToken} id={artist?.id} key={index} img={artist?.images[0]?.url} name={artist?.name} rating={artist?.popularity} followers={artist?.followers.total} />
 
                             )
                         }

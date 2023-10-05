@@ -1,11 +1,30 @@
 import Image from 'next/image'
 import React from 'react'
 import StarRatings from 'react-star-ratings'
-const ArtistCard = ({ img, name, followers, rating, id }) => {
-    const ratingOverFive = rating/20
+const ArtistCard = ({ img, name, followers, rating, id, accessToken }) => {
+    const ratingOverFive = rating / 20
+    const getAlbums = async () => {
+        const url = 'https://api.spotify.com/v1/artists/' + id + '/albums'
+
+        const headers = {
+            'Authorization': `Bearer ${accessToken}`
+        };
+
+        fetch(url, {
+            method: 'GET',
+            headers: headers,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
     return (
         <div className='border w-[300px] h-[350px]'>
-            <div >
+            <div className='cursor-pointer' onClick={getAlbums}>
                 <Image className='h-[200px]' height={100} width={300} src={img} alt='artist image' />
             </div>
             <div className='p-3'>
