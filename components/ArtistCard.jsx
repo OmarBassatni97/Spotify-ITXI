@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
-
-const ArtistCard = ({ img, name, followers, rating }) => {
+import StarRatings from 'react-star-ratings'
+const ArtistCard = ({ img, name, followers, rating, id }) => {
+    const ratingOverFive = rating/20
     return (
         <div className='border w-[300px] h-[350px]'>
             <div >
@@ -12,7 +13,12 @@ const ArtistCard = ({ img, name, followers, rating }) => {
                     <span className='text-2xl font-semibold'>{name}</span>
                     <span className='opacity-80'>{followers.toLocaleString()} followers</span>
                 </div>
-                <span>{rating}</span>
+                <StarRatings
+                    rating={ratingOverFive}
+                    starDimension="22px"
+                    starSpacing="1px"
+                    starRatedColor="rgba(226,157,67,255)"
+                />
             </div>
 
         </div>
