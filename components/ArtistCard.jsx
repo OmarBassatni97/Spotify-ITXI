@@ -1,8 +1,13 @@
+import { AlbumsStore } from '@/context/Albums'
 import Image from 'next/image'
-import React from 'react'
+import React, { useContext } from 'react'
 import StarRatings from 'react-star-ratings'
+import { useRouter } from 'next/navigation'
+
 const ArtistCard = ({ img, name, followers, rating, id, accessToken }) => {
     const ratingOverFive = rating / 20
+    const {setAlbums}  = useContext(AlbumsStore)
+    const router = useRouter()
     const getAlbums = async () => {
         const url = 'https://api.spotify.com/v1/artists/' + id + '/albums'
 
@@ -10,18 +15,23 @@ const ArtistCard = ({ img, name, followers, rating, id, accessToken }) => {
             'Authorization': `Bearer ${accessToken}`
         };
 
-        fetch(url, {
+        await fetch(url, {
             method: 'GET',
             headers: headers,
         })
             .then((response) => response.json())
             .then((data) => {
                 console.log(data)
+                setAlbums(data)
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
+
+        router.push('/albums', { scroll: false })
+
     }
+
     return (
         <div className='border w-[300px] h-[350px]'>
             <div className='cursor-pointer' onClick={getAlbums}>
