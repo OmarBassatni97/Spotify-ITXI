@@ -2,15 +2,19 @@
 import React, { useContext } from 'react'
 import { AlbumsStore } from '@/context/Albums'
 import AlbumCard from './AlbumCard'
+import Link from 'next/link'
 
 const Albums = () => {
     const { albums, artistName } = useContext(AlbumsStore)
     console.log(albums);
     return (
-        <div className='flex'>
-            <div className='absolute left-1/2'>
-                back to search
-            </div>
+        <div className='flex flex-col justify-center items-center'>
+            {
+                albums?.length > 0 && <Link href='/search' className='cursor-pointer hover:text-green-300 duration-300 transition'>
+                    Back to search
+                </Link>
+            }
+
             <div className='w-full flex flex-col justify-center items-center my-5'>
                 {
                     albums?.length > 0 && <h1 className='py-4 text-4xl font-bold'>{artistName} Albums</h1>

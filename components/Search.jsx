@@ -1,5 +1,4 @@
 'use client'
-import { data } from 'autoprefixer'
 import { useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
