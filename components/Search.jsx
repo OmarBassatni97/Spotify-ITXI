@@ -63,7 +63,7 @@ const Search = () => {
     return (
         <div className='w-full flex flex-col justify-center items-center '>
             <div className="flex flex-col items-center justify-center mt-5 max-w-[1440px]">
-                <h1 className='my-4 text-2xl font-bold'>Welcome {session?.user?.name}</h1>
+                
                 <form onSubmit={search} className='border p-4 flex justify-center items-center '>
                     <input onChange={(e) => setSearchValue(e.target.value)} type="text" className='outline-none' placeholder='Search for an artist...' />
                     <AiOutlineSearch />

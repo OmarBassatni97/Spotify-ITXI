@@ -2,6 +2,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import AuthProvider from '@/components/AuthProvider'
 import { AlbumsProvider } from '@/context/Albums'
+import Header from '@/components/Header'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <AlbumsProvider>
         <AuthProvider>
+          <Header/>
           <body className={inter.className}>{children}</body>
         </AuthProvider>
       </AlbumsProvider>
