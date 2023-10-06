@@ -9,8 +9,9 @@ const Search = () => {
     const [searchValue, setSearchValue] = useState("")
     const [artists, setArtists] = useState([])
     const { data: session } = useSession({
-
+        required: true
     })
+    console.log(session)
     const url = "https://accounts.spotify.com/api/token"
     const clientID = "5da59371fe7b4dc4ac30a11480706acf"
     const clientSecret = "c58b3aba483b42f995b50cad63e05569"
@@ -63,6 +64,7 @@ const Search = () => {
     return (
         <div className='w-full flex flex-col justify-center items-center '>
             <div className="flex flex-col items-center justify-center mt-5 max-w-[1440px]">
+                <h1 className='my-4 text-2xl font-bold'>Welcome {session?.user?.name}</h1>
                 <form onSubmit={search} className='border p-4 flex justify-center items-center '>
                     <input onChange={(e) => setSearchValue(e.target.value)} type="text" className='outline-none' placeholder='Search for an artist...' />
                     <AiOutlineSearch />
