@@ -59,7 +59,7 @@ const Search = () => {
                 console.error('Error:', error)
             });
     }
-    console.log(artists);
+
     return (
         <div className='w-full flex flex-col justify-center items-center '>
             <div className="flex flex-col items-center justify-center mt-5 max-w-[1440px]">

@@ -4,7 +4,7 @@ import React from 'react'
 
 const AlbumCard = ({ img, name, date, tracks, preview, artist }) => {
     return (
-        <div className='border-2 w-[300px] flex flex-col'>
+        <div className='border-2 w-[300px] flex flex-col justify-between'>
             <div>
                 <Image src={img} height={100} width={300} alt='album pic' />
             </div>
@@ -19,7 +19,7 @@ const AlbumCard = ({ img, name, date, tracks, preview, artist }) => {
                 </div>
             </div>
 
-            <div className='bg-gray-300 p-2 flex justify-center items-end' >
+            <div className='bg-gray-300 p-2 flex justify-center items-end border cursor-pointer hover:bg-green-300 duration-300 transition' >
                 <Link href={preview} target='_blank'>Preview on Spotify</Link>
             </div>
         </div>

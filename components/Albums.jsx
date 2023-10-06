@@ -5,7 +5,7 @@ import AlbumCard from './AlbumCard'
 
 const Albums = () => {
     const { albums } = useContext(AlbumsStore)
-    console.log(albums);
+
     return (
         <div className='w-full flex justify-center items-center my-5'>
             <div className='max-w-[1440px] grid grid-cols-4 gap-4'>

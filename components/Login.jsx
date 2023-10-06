@@ -5,7 +5,7 @@ import { useSession, signIn, signOut } from "next-auth/react"
 
 export default function Login() {
     const session = useSession()
-console.log(session.data);
+
     return (
         <div className="w-full flex items-center justify-center h-screen">
             {!session?.data ?
