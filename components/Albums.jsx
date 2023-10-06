@@ -24,7 +24,7 @@ const Albums = () => {
                         albums ? albums?.map((album, index) => (
                             <AlbumCard key={index} img={album?.images[0]?.url} preview={album?.uri} name={album?.name} date={album?.release_date} tracks={album?.total_tracks} artist={album?.artists[0].name} />
                         ))
-                            : <span>NO ALBUMS, PLEASE SEARCH AGAIN</span>
+                            : <span>NO ALBUMS, PLEASE SEARCH AGAIN, <Link href='/search' className='cursor-pointer hover:text-green-300 duration-300 transition'>Back to Search</Link></span>
                     }
                 </div>
 
