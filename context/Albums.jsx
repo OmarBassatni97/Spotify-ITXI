@@ -5,8 +5,9 @@ const AlbumsStore = createContext()
 
 const AlbumsProvider = ({ children }) => {
     const [albums, setAlbums] = useState([])
+    const [artistName, setArtistName] = useState('')
     return (
-        <AlbumsStore.Provider value={{ albums, setAlbums }}>{children}</AlbumsStore.Provider>
+        <AlbumsStore.Provider value={{ albums, setAlbums, artistName, setArtistName }}>{children}</AlbumsStore.Provider>
     )
 }
 

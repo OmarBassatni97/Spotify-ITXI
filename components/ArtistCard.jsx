@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 
 const ArtistCard = ({ img, name, followers, rating, id, accessToken }) => {
     const ratingOverFive = rating / 20
-    const {setAlbums}  = useContext(AlbumsStore)
+    const { setAlbums, setArtistName } = useContext(AlbumsStore)
     const router = useRouter()
     const getAlbums = async () => {
         const url = 'https://api.spotify.com/v1/artists/' + id + '/albums'
@@ -21,13 +21,12 @@ const ArtistCard = ({ img, name, followers, rating, id, accessToken }) => {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data)
-                setAlbums(data)
+                setAlbums(data.items)
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
-
+        setArtistName(name)
         router.push('/albums', { scroll: false })
 
     }
