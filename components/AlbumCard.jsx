@@ -7,7 +7,7 @@ const AlbumCard = ({ img, name, date, tracks, preview, artist }) => {
         <div className='border-2 w-[300px] flex flex-col justify-between'>
             <div className='w-[300px] h-[350px] relative'>
                 {
-                    img ? <Image fill src={img} alt='artist image' />
+                    img ? <Image fill src={img} alt='artist image' quality={100} />
                         :
                         <Image src='/images/avatar-placeholder.png' fill alt='artist image' />
                 }

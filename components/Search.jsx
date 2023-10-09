@@ -5,7 +5,7 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import ArtistCard from './ArtistCard'
 const Search = () => {
     const [accessToken, setAccessToken] = useState("")
-    const [searchValue, setSearchValue] = useState("")
+    const [searchValue, setSearchValue] = useState()
     const [artists, setArtists] = useState([])
     const { data: session } = useSession({
         required: true
@@ -39,32 +39,36 @@ const Search = () => {
             });
     }, [])
 
-    const search = async (e) => {
-        e.preventDefault()
-        const url = 'https://api.spotify.com/v1/search?q=' + searchValue + '&type=artist'
+    const search = async () => {
+        if (searchValue) {
+            const url = 'https://api.spotify.com/v1/search?q=' + searchValue + '&type=artist';
+            const headers = {
+                'Authorization': `Bearer ${accessToken}`
+            };
 
-        const headers = {
-            'Authorization': `Bearer ${accessToken}`
-        };
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: headers,
+                });
+                const data = await response.json();
+                setArtists(data.artists.items);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    };
 
-        await fetch(url, {
-            method: 'GET',
-            headers: headers,
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                setArtists(data.artists.items)
-            })
-            .catch((error) => {
-                console.error('Error:', error)
-            });
-    }
+    useEffect(() => {
+        search();
+    }, [searchValue]);
     console.log(artists);
+    console.log(searchValue);
     return (
         <div className='w-full flex flex-col justify-center items-center '>
             <div className="flex flex-col items-center justify-center mt-5 max-w-[1440px]">
 
-                <form onChange={search} className='border p-4 flex justify-center items-center '>
+                <form  className='border p-4 flex justify-center items-center '>
                     <input onChange={(e) => setSearchValue(e.target.value)} type="text" className='outline-none' placeholder='Search for an artist...' />
                     <AiOutlineSearch />
                 </form>

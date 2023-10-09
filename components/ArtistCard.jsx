@@ -35,7 +35,7 @@ const ArtistCard = ({ img, name, followers, rating, id, accessToken }) => {
         <div className='border w-[300px] h-[450px]'>
             <div className='cursor-pointer w-[300px] h-[300px] relative' onClick={getAlbums}>
                 {
-                    img ? <Image fill src={img} alt='artist image' />
+                    img ? <Image fill src={img} alt='artist image' quality={100}/>
                         :
                         <Image src='/images/avatar-placeholder.png' fill alt='artist image' />
                 }
