@@ -19,7 +19,7 @@ const Albums = () => {
                 {
                     albums?.length > 0 && <h1 className='py-4 text-4xl font-bold'>{artistName} Albums</h1>
                 }
-                <div className='max-w-[1440px] grid grid-cols-4 gap-4'>
+                <div className='max-w-[1440px] grid grid-col-1 md:grid-cols-2 xl:grid-cols-4 gap-4'>
                     {
                         albums ? albums?.map((album, index) => (
                             <AlbumCard key={index} img={album?.images[0]?.url} preview={album?.uri} name={album?.name} date={album?.release_date} tracks={album?.total_tracks} artist={album?.artists[0].name} />

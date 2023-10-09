@@ -32,9 +32,14 @@ const ArtistCard = ({ img, name, followers, rating, id, accessToken }) => {
     }
 
     return (
-        <div className='border w-[300px] h-[350px]'>
-            <div className='cursor-pointer' onClick={getAlbums}>
-                <Image className='h-[200px]' height={100} width={300} src={img} alt='artist image' />
+        <div className='border w-[300px] h-[450px]'>
+            <div className='cursor-pointer w-[300px] h-[300px] relative' onClick={getAlbums}>
+                {
+                    img ? <Image fill src={img} alt='artist image' />
+                        :
+                        <Image src='/images/avatar-placeholder.png' fill alt='artist image' />
+                }
+
             </div>
             <div className='p-3'>
                 <div className='flex flex-col gap-2 py-2'>

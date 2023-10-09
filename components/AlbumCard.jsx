@@ -5,8 +5,13 @@ import React from 'react'
 const AlbumCard = ({ img, name, date, tracks, preview, artist }) => {
     return (
         <div className='border-2 w-[300px] flex flex-col justify-between'>
-            <div>
-                <Image src={img} height={100} width={300} alt='album pic' />
+            <div className='w-[300px] h-[350px] relative'>
+                {
+                    img ? <Image fill src={img} alt='artist image' />
+                        :
+                        <Image src='/images/avatar-placeholder.png' fill alt='artist image' />
+                }
+
             </div>
             <div className='p-4'>
                 <div className='flex flex-col gap-2 py-4'>
